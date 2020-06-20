@@ -17,11 +17,9 @@
         }
 
         public function add_event(){
-            $this->number = $_GET['number'];  
-            
-            $this->bill_account = $_GET['bill'];  
-            
-            $this->balance = $_GET['balance'];    
+            $this->number = isset($_GET['number']) ? trim($_GET['number']) :  null;
+            $this->bill_account = isset($_GET['bill']) ? trim($_GET['bill']) : null;
+            $this->balance = isset($_GET['balance']) ? trim($_GET['balance']) : null;  
 
             $sql = static::get_pdo()->prepare('INSERT INTO `' . $this->table . '` (`number`, `bill_account`, `balance`) VALUES (?,?,?);');
             $sql->execute(array($this->number, $this->bill_account, $this->balance));    
